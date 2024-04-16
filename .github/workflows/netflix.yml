@@ -39,13 +39,13 @@ jobs:
           DOCKER_CLI_ACI: 1
   
   deploy:
-  needs: build-analyze-scan
-  runs-on: [aws-netflix]
-  steps:
-    - name: pull the docker image 
-      run: docker pull sehindemitech/netflix:latest
-    - name: Trivy image scan
-      run: trivy image sehindemitech/netflix:latest
-    - name: run the container netflix
-      run: docker run -d --name netflix -p 8081:80 sehindemitech/netflix:latest
+    needs: build-analyze-scan
+    runs-on: [aws-netflix]
+    steps:
+      - name: pull the docker image 
+        run: docker pull sehindemitech/netflix:latest
+      - name: Trivy image scan
+        run: trivy image sehindemitech/netflix:latest
+      - name: run the container netflix
+        run: docker run -d --name netflix -p 8081:80 sehindemitech/netflix:latest
 
